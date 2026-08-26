@@ -1,0 +1,32 @@
+cmake_minimum_required(VERSION 3.24)
+project(QuantLiquidityEngine VERSION 1.0.0 LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# Compiler optimization flags for quant math & SIMD execution
+if(MSVC)
+    add_compile_options(/O2 /arch:AVX2 /W4 /permissive-)
+else()
+    add_compile_options(-O3 -march=native -mavx2 -mfma -Wall -Wextra -Wpedantic -pthread)
+endif()
+
+# Source definitions
+set(ENGINE_SOURCES
+    src/SIMD_MathCore.cpp
+    src/JumpDiffusionModel.cpp
+    src/MonteCarloSimulator.cpp
+    src/LiquidityGraph.cpp
+    src/CoreEngineLoop.cpp
+)
+
+# Header include paths
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+# Core Executable Target
+add_executable(quant_liquidity_engine ${ENGINE_SOURCES})
+
+# Threading library linkage
+find_package(Threads REQUIRED)
+target_link_libraries(quant_liquidity_engine PRIVATE Threads::Threads)
