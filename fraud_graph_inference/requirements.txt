@@ -1,0 +1,8 @@
+# ChronoRisk Fraud Inference & Training Dependencies
+torch==2.3.0
+dgl==2.1.0        # Deep Graph Library for GNNs
+onnx==1.16.0
+onnxruntime-gpu==1.17.1
+tensorrt==10.0.1
+pandas==2.2.2
+scikit-learn==1.4.2
