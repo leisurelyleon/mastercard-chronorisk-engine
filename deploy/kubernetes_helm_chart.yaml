@@ -1,0 +1,40 @@
+# Mastercard ChronoRisk - Core Engine Kubernetes Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chronorisk-quant-engine
+  namespace: financial-core
+  labels:
+    app: chronorisk
+    tier: backend
+spec:
+  replicas: 5 # High availability distributed deployment
+  selector:
+    matchLabels:
+      app: chronorisk
+  template:
+    metadata:
+      labels:
+        app: chronorisk
+    spec:
+      containers:
+      - name: quant-engine-node
+        image: mastercard-registry.internal/chronorisk-quant:v1.0.0
+        resources:
+          requests:
+            memory: "16Gi"
+            cpu: "8"
+          limits:
+            memory: "32Gi"
+            cpu: "16"
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 9090
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      tolerations:
+      - key: "hardware"
+        operator: "Equal"
+        value: "simd-avx512-enabled" # Enforces scheduling on high-performance compute nodes
+        effect: "NoSchedule"
