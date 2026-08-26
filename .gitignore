@@ -1,0 +1,32 @@
+# OS & IDE
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Rust / Cargo
+iso20022_zero_copy_parser/target/
+**/*.rs.bk
+Cargo.lock
+
+# C++ / CMake
+quant_liquidity_engine/build/
+fraud_graph_inference/build/
+CMakeCache.txt
+CMakeFiles/
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+
+# Go
+settlement_orchestrator/bin/
+
+# Python & AI Models
+__pycache__/
+*.pyc
+*.onnx
+*.pt
+*.pth
+*.tensorcache
