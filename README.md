@@ -1,4 +1,4 @@
-# 💳 Mastercard ChronoRisk: Quantitative Engine (2026 Architecture)]
+# 💳 Mastercard ChronoRisk: Quantitative Engine (2026 Architecture)
 
 ![Mastercard](https://eyeondesign.aiga.org/wp-content/uploads/2016/07/Mastercard_Pentagram_Press-4.jpg)
 
