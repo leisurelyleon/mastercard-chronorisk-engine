@@ -1,0 +1,19 @@
+[package]
+name = "iso20022_zero_copy_parser"
+version = "0.1.0"
+edition = "2021"
+authors = ["Mastercard ChronoRisk Engineering"]
+description = "Ultra-low-latency, zero-allocation SIMD ISO 20022 parser and C-ABI bridge"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+libc = "0.2"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"
+overflow-checks = false
